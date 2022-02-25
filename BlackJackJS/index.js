@@ -9,10 +9,26 @@ let sumEl = document.getElementById("sum-el");
 let cardsEl = document.getElementById("card-el");
 
 function startGame() {
-    isAlive = true;
-    cards.push(getRandomCard());
-    cards.push(getRandomCard());
-    renderGame();
+    if(isAlive === false && blackJack === false) {
+        cards = [];
+        isAlive = true;
+        cards.push(getRandomCard());
+        cards.push(getRandomCard());
+        renderGame();
+    } 
+    else if(isAlive === true && blackJack === true) {
+        cards = [];
+        blackJack = false;
+        cards.push(getRandomCard());
+        cards.push(getRandomCard());
+        renderGame();
+    }
+    else if (isAlive === false) {
+        cards = [];
+        cards.push(getRandomCard());
+        cards.push(getRandomCard());
+        renderGame();
+    }
 }
 
 function renderGame() {
@@ -30,6 +46,7 @@ function renderGame() {
     else {
         message = "You Lost!";
         isAlive = false;
+        blackJack = false;
     }
     
     messageEl.innerText = message;
