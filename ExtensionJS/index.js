@@ -3,13 +3,20 @@ const inputEl = document.getElementById("input-el");
 const listEl = document.getElementById("list");
 
 let myLeads = [];
+let localLeads = JSON.parse(localStorage.getItem("myLeads"));
+
+if(localLeads) {
+    myLeads = localLeads;
+    renderLeads();
+}
 
 inputBtn.addEventListener("click", saveLead);
 
 function saveLead() {
     myLeads.push(inputEl.value);
-    renderLeads();
     inputEl.value = "";
+    localStorage.setItem("myLeads",JSON.stringify(myLeads));
+    renderLeads();
 }
 
 function renderLeads() {
